@@ -16,7 +16,7 @@ import TuningIcon from '../icons/v1/Tuning';
 import Wallet from '../icons/v1/Wallet';
 import ArrowButtonLeft1 from '../icons/v2/ArrowButtonLeft1';
 import CalendarIcon from '../icons/v2/Calendar';
-import { styles, colors } from '../style';
+import { styles, colorsn } from '../style';
 import { breakpoints } from '../tokens';
 
 import {
@@ -88,12 +88,12 @@ function Item({
   forceActive = false,
 }) {
   const hoverStyle = {
-    backgroundColor: colors.n2,
+    backgroundColor: colorsn.secondaryAccent,
   };
   const activeStyle = {
-    borderLeft: '4px solid ' + colors.p8,
+    borderLeft: '4px solid ' + colorsn.secondaryAccent,
     paddingLeft: 19 + indent - 4,
-    color: colors.p8,
+    color: colorsn.secondaryText,
   };
   const linkStyle = [
     {
@@ -103,7 +103,7 @@ function Item({
       paddingLeft: 19 + indent,
       paddingRight: 10,
       textDecoration: 'none',
-      color: colors.n9,
+      color: colorsn.secondaryText,
       ...(forceHover ? hoverStyle : {}),
     },
     { ':hover': hoverStyle },
@@ -152,18 +152,18 @@ function SecondaryItem({
   indent = 0,
 }) {
   const hoverStyle = {
-    backgroundColor: colors.n2,
+    backgroundColor: colorsn.secondaryAccent,
   };
   const activeStyle = {
-    borderLeft: '4px solid ' + colors.p8,
+    borderLeft: '4px solid ' + colorsn.secondaryAccent,
     paddingLeft: 14 - 4 + indent,
-    color: colors.p8,
+    color: colorsn.secondaryText,
     fontWeight: bold ? fontWeight : null,
   };
   const linkStyle = [
     accountNameStyle,
     {
-      color: colors.n9,
+      color: colorsn.secondaryText,
       paddingLeft: 14 + indent,
       fontWeight: bold ? fontWeight : null,
     },
@@ -209,9 +209,9 @@ let accountNameStyle = [
     paddingRight: 15,
     paddingLeft: 10,
     textDecoration: 'none',
-    color: colors.n9,
+    color: colorsn.secondaryText,
   },
-  { ':hover': { backgroundColor: colors.n2 } },
+  { ':hover': { backgroundColor: colorsn.secondaryAccent } },
   styles.smallText,
 ];
 
@@ -263,8 +263,8 @@ function Account({
               updated && { fontWeight: 700 },
             ]}
             activeStyle={{
-              borderColor: colors.p8,
-              color: colors.p8,
+              borderLeft: '4px solid ' + colorsn.secondaryAccent,
+              color: colorsn.secondaryText,
               // This is kind of a hack, but we don't ever want the account
               // that the user is looking at to be "bolded" which means it
               // has unread transactions. The system does mark is read and
@@ -272,7 +272,7 @@ function Account({
               // ignores it if it's active
               fontWeight: (style && style.fontWeight) || 'normal',
               '& .dot': {
-                backgroundColor: colors.p8,
+                backgroundColor: colorsn.secondary,
                 transform: 'translateX(-4.5px)',
               },
             }}
@@ -294,7 +294,9 @@ function Account({
                   width: 5,
                   height: 5,
                   borderRadius: 5,
-                  backgroundColor: failed ? colors.r7 : colors.g5,
+                  backgroundColor: failed
+                    ? colorsn.notice
+                    : colorsn.secondaryAccent,
                   marginLeft: 2,
                   transition: 'transform .3s',
                   opacity: connected ? 1 : 0,
@@ -464,7 +466,9 @@ function ToggleButton({ style, onFloat }) {
   return (
     <View className="float" style={[style, { flexShrink: 0 }]}>
       <Button bare onClick={onFloat}>
-        <ArrowButtonLeft1 style={{ width: 13, height: 13, color: colors.n5 }} />
+        <ArrowButtonLeft1
+          style={{ width: 13, height: 13, color: colorsn.secondaryAccent }}
+        />
       </Button>
     </View>
   );
@@ -547,8 +551,8 @@ export function Sidebar({
       style={[
         {
           width: SIDEBAR_WIDTH,
-          color: colors.n9,
-          backgroundColor: colors.n1,
+          color: colorsn.secondaryText,
+          backgroundColor: colorsn.secondary,
           '& .float': {
             opacity: 0,
             transition: 'opacity .25s, width .25s',
@@ -602,11 +606,11 @@ export function Sidebar({
             style={{
               // Needed for Windows? No idea why this is displayed as block
               display: 'inherit',
-              color: colors.n5,
+              color: colorsn.secondaryText,
               marginLeft: hasWindowButtons ? 0 : 5,
               flexShrink: 0,
             }}
-            activeStyle={{ color: colors.p7 }}
+            activeStyle={{ color: colorsn.secondaryTextAccent }}
           >
             <Cog width={15} height={15} style={{ color: 'inherit' }} />
           </ButtonLink>
@@ -630,7 +634,7 @@ export function Sidebar({
         <View
           style={{
             height: 1,
-            backgroundColor: colors.n3,
+            backgroundColor: colorsn.secondary,
             marginTop: 15,
             flexShrink: 0,
           }}

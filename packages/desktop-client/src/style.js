@@ -4,6 +4,23 @@ import tokens from './tokens';
 
 export const debug = { borderWidth: 1, borderColor: 'red' };
 
+export const colorsn = {
+  primary: '#829AB1',
+  primaryText: '#131416',
+  primaryAccent: '#d48954',
+  primaryAccentText: '#D9E2EC',
+
+  secondary: '#102A43',
+  secondaryText: '#D9E2EC',
+  secondaryAccent: '#829AB1',
+  secondaryAccentText: '#131416',
+
+  notice: '#0C6B58',
+  noticeText: '#FFFFFF',
+
+  background: '#F7FAFC',
+};
+
 export const colors = {
   y1: '#733309',
   y2: '#87540d',
@@ -73,9 +90,9 @@ export const colors = {
   p11: '#F9F6FE',
 };
 
-colors.border = colors.n10;
-colors.hover = '#fafafa';
-colors.selected = colors.b9;
+colors.border = colorsn.primaryAccent;
+colors.hover = colorsn.primaryAccentText;
+colors.selected = colorsn.primaryAccentText;
 
 colors.resolve = (name, offset) => {
   switch (name) {
@@ -124,11 +141,11 @@ export const styles = {
   pageHeader: {
     fontSize: 25,
     borderBottomWidth: 5,
-    borderColor: colors.purple2,
+    borderColor: colorsn.primaryAccent,
     borderStyle: 'solid',
     display: 'inline',
     flex: 0,
-    color: colors.grey4,
+    color: colorsn.primaryText,
     marginTop: 40,
     marginBottom: 20,
     paddingBottom: 5,
@@ -164,14 +181,14 @@ export const styles = {
   notFixed: { fontFeatureSettings: '' },
   header: {
     headerStyle: {
-      backgroundColor: 'white',
+      backgroundColor: colorsn.secondary,
       borderBottomWidth: 1,
-      borderBottomColor: colors.n9,
+      borderBottomColor: colorsn.secondaryAccent,
       elevation: 0,
     },
-    headerTintColor: colors.n1,
+    headerTintColor: colorsn.secondaryAccent,
     headerTitleStyle: {
-      color: colors.n1,
+      color: colorsn.secondaryText,
       fontSize: 15,
       fontWeight: 600,
     },
@@ -181,7 +198,7 @@ export const styles = {
     fontSize: 16,
     // lineHeight: 22.4 // TODO: This seems like trouble, but what's the right value?
   },
-  textColor: colors.n1,
+  textColor: colorsn.primaryText,
 };
 
 let hiddenScrollbars = false;
