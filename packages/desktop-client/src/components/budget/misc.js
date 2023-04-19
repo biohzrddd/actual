@@ -8,7 +8,7 @@ import ExpandArrow from '../../icons/v0/ExpandArrow';
 import ArrowThinLeft from '../../icons/v1/ArrowThinLeft';
 import ArrowThinRight from '../../icons/v1/ArrowThinRight';
 import CheveronDown from '../../icons/v1/CheveronDown';
-import { styles, colors } from '../../style';
+import { styles, colorsn } from '../../style';
 import {
   View,
   Text,
@@ -194,7 +194,7 @@ export class BudgetTable extends React.Component {
               backgroundColor: 'transparent',
             },
             '& ::-webkit-scrollbar-thumb:vertical': {
-              backgroundColor: 'white',
+              backgroundColor: colorsn.background,
             },
           },
         ]}
@@ -288,7 +288,7 @@ export function SidebarCategory({
   dragging,
   editing,
   style,
-  borderColor = colors.border,
+  borderColor = colorsn.primaryAccent,
   isLast,
   onDragChange,
   onEditMonth,
@@ -327,12 +327,12 @@ export function SidebarCategory({
             e.stopPropagation();
             setMenuOpen(true);
           }}
-          style={{ color: 'currentColor', padding: 3 }}
+          style={{ color: colorsn.primaryText, padding: 3 }}
         >
           <CheveronDown
             width={14}
             height={14}
-            style={{ color: 'currentColor' }}
+            style={{ color: colorsn.primaryText }}
           />
         </Button>
         {menuOpen && (
@@ -362,7 +362,7 @@ export function SidebarCategory({
       <View style={{ flex: 1 }} />
       <NotesButton
         id={category.id}
-        style={dragging && { color: 'currentColor' }}
+        style={dragging && { color: colorsn.primaryText }}
       />
     </View>
   );
@@ -377,14 +377,14 @@ export function SidebarCategory({
         },
         !dragging &&
           !dragPreview && {
-            '&:hover button': { display: 'flex', color: colors.n1 },
+            '&:hover button': { display: 'flex', color: colorsn.secondary },
           },
-        dragging && { color: colors.n8 },
+        dragging && { color: colorsn.primaryAccent },
 
         // The zIndex here forces the the view on top of a row below
         // it that may be "collapsed" and show a border on top
         dragPreview && {
-          backgroundColor: 'white',
+          backgroundColor: colorsn.primaryAccent,
           zIndex: 10000,
           borderRadius: 6,
           overflow: 'hidden',
@@ -434,7 +434,7 @@ export function SidebarGroup({
   dragPreview,
   innerRef,
   style,
-  borderColor = colors.border,
+  borderColor = colorsn.primaryAccent,
   onEdit,
   onSave,
   onDelete,
@@ -535,9 +535,9 @@ export function SidebarGroup({
         style,
         {
           width: 200,
-          backgroundColor: colors.n11,
+          backgroundColor: colorsn.background,
           '& button': { display: 'none' },
-          '&:hover button': { display: 'flex', color: colors.n1 },
+          '&:hover button': { display: 'flex', color: colorsn.primaryText },
         },
         dragPreview && {
           paddingLeft: 10,
@@ -558,7 +558,7 @@ export function SidebarGroup({
         formatter={value => displayed}
         width="flex"
         exposed={editing}
-        borderColor={colors.border}
+        borderColor={colorsn.primaryAccent}
         onUpdate={value => {
           if (temporary) {
             if (value === '') {
@@ -595,7 +595,7 @@ function RenderMonths({ component: Component, editingIndex, args, style }) {
         <View
           style={[
             { flex: 1 },
-            { borderLeft: '1px solid ' + colors.border },
+            { borderLeft: '1px solid ' + colorsn.primaryAccent },
             style,
           ]}
         >
@@ -611,20 +611,20 @@ const BudgetTotals = React.memo(function BudgetTotals({ MonthComponent }) {
     <View
       data-testid="budget-totals"
       style={{
-        backgroundColor: 'white',
+        backgroundColor: colorsn.background,
         flexDirection: 'row',
         flexShrink: 0,
         boxShadow: MONTH_BOX_SHADOW,
         marginLeft: 5,
         marginRight: 5 + getScrollbarWidth(),
         borderRadius: '4px 4px 0 0',
-        borderBottom: '1px solid ' + colors.border,
+        borderBottom: '1px solid ' + colorsn.primaryAccent,
       }}
     >
       <View
         style={{
           width: 200,
-          color: colors.n4,
+          color: colorsn.primaryAccentText,
           justifyContent: 'center',
           paddingLeft: 18,
         }}
@@ -681,7 +681,7 @@ function ExpenseGroup({
   return (
     <Row
       collapsed={true}
-      backgroundColor={colors.n11}
+      backgroundColor={colorsn.primary}
       style={{ fontWeight: 600 }}
     >
       {dragState && !dragState.preview && dragState.type === 'group' && (
@@ -831,7 +831,7 @@ function IncomeGroup({
   return (
     <Row
       collapsed={true}
-      backgroundColor={colors.n11}
+      backgroundColor={colorsn.background}
       style={{ fontWeight: 600 }}
     >
       <SidebarGroup
@@ -1031,7 +1031,7 @@ const BudgetCategories = React.memo(
       <View
         style={{
           marginBottom: 10,
-          backgroundColor: 'white',
+          backgroundColor: colorsn.background,
           overflow: 'hidden',
           boxShadow: MONTH_BOX_SHADOW,
           borderRadius: '0 0 4px 4px',
@@ -1043,7 +1043,7 @@ const BudgetCategories = React.memo(
           switch (item.type) {
             case 'new-group':
               content = (
-                <Row style={{ backgroundColor: colors.n11 }}>
+                <Row style={{ backgroundColor: colorsn.background }}>
                   <SidebarGroup
                     group={{ id: 'new', name: '' }}
                     editing={true}
@@ -1056,7 +1056,7 @@ const BudgetCategories = React.memo(
               break;
             case 'new-category':
               content = (
-                <Row>
+                <Row style={{ backgroundColor: colorsn.background }}>
                   <SidebarCategory
                     category={{
                       name: '',
@@ -1117,7 +1117,7 @@ const BudgetCategories = React.memo(
                 <View
                   style={{
                     height: INCOME_HEADER_HEIGHT,
-                    backgroundColor: 'white',
+                    backgroundColor: colorsn.background,
                   }}
                 >
                   <IncomeHeader
@@ -1180,7 +1180,7 @@ const BudgetCategories = React.memo(
               <View
                 style={
                   !dragState && {
-                    ':hover': { backgroundColor: '#fcfcfc' },
+                    ':hover': { backgroundColor: colorsn.background },
                   }
                 }
               >
@@ -1334,15 +1334,15 @@ export const MonthPicker = ({
                   cursor: 'default',
                   borderRadius: 2,
                   ':hover': isMonthBudgeted && {
-                    backgroundColor: colors.p6,
-                    color: 'white',
+                    backgroundColor: colorsn.secondary,
+                    color: colorsn.secondaryText,
                   },
                 },
-                !isMonthBudgeted && { color: colors.n7 },
+                !isMonthBudgeted && { color: colorsn.primaryAccent },
                 styles.smallText,
                 selected && {
-                  backgroundColor: colors.p6,
-                  color: 'white',
+                  backgroundColor: colorsn.secondary,
+                  color: colorsn.secondaryText,
                   borderRadius: 0,
                 },
                 idx === selectedIndex && {
@@ -1357,7 +1357,7 @@ export const MonthPicker = ({
                   idx < lastSelectedIndex - 1 && {
                     marginRight: 0,
                     borderRight: 'solid 1px',
-                    borderColor: colors.p6,
+                    borderColor: colorsn.primaryAccent,
                   },
                 current && { textDecoration: 'underline' },
               ]}

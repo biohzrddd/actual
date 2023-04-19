@@ -610,7 +610,7 @@ export function Sidebar({
               marginLeft: hasWindowButtons ? 0 : 5,
               flexShrink: 0,
             }}
-            activeStyle={{ color: colorsn.secondaryTextAccent }}
+            activeStyle={{ color: colorsn.secondaryAccentText }}
           >
             <Cog width={15} height={15} style={{ color: 'inherit' }} />
           </ButtonLink>
