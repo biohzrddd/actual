@@ -46,13 +46,13 @@ function extractCommonThings(payees, groups) {
   let categories = expenseGroup.categories.filter(
     c =>
       [
-        'Food',
-        'Restaurants',
-        'Entertainment',
-        'Clothing',
-        'General',
-        'Gift',
-        'Medical',
+        '🍔Food',
+        '🍽️Restaurants',
+        '🍿Entertainment',
+        '👖Clothing',
+        '🧻General',
+        '🎁Gift',
+        '🩹Medical',
       ].indexOf(c.name) !== -1,
   );
 
@@ -142,7 +142,7 @@ async function fillPrimaryChecking(handlers, account, payees, groups) {
         payee: billPayees.find(p => p.name.toLowerCase().includes('power')).id,
         account: account.id,
         date,
-        category: billCategories.find(c => c.name === 'Power').id,
+        category: billCategories.find(c => c.name === '⚡Power').id,
       });
     }
 
@@ -153,7 +153,7 @@ async function fillPrimaryChecking(handlers, account, payees, groups) {
         payee: billPayees.find(p => p.name.toLowerCase().includes('water')).id,
         account: account.id,
         date,
-        category: billCategories.find(c => c.name === 'Water').id,
+        category: billCategories.find(c => c.name === '🚰Water').id,
       });
     }
 
@@ -164,7 +164,7 @@ async function fillPrimaryChecking(handlers, account, payees, groups) {
         payee: billPayees.find(p => p.name.toLowerCase().includes('housy')).id,
         account: account.id,
         date,
-        category: billCategories.find(c => c.name === 'Mortgage').id,
+        category: billCategories.find(c => c.name === '💰Mortgage').id,
       });
     }
 
@@ -176,7 +176,7 @@ async function fillPrimaryChecking(handlers, account, payees, groups) {
           .id,
         account: account.id,
         date,
-        category: billCategories.find(c => c.name === 'Internet').id,
+        category: billCategories.find(c => c.name === '🌐Internet').id,
       });
     }
 
@@ -188,7 +188,7 @@ async function fillPrimaryChecking(handlers, account, payees, groups) {
           .id,
         account: account.id,
         date,
-        category: billCategories.find(c => c.name === 'Cell').id,
+        category: billCategories.find(c => c.name === '📶Cell').id,
       });
     }
   }
@@ -415,7 +415,7 @@ async function fillOther(handlers, account, payees, groups) {
 }
 
 async function createBudget(accounts, payees, groups) {
-  let primaryAccount = accounts.find(a => (a.name = 'Bank of America'));
+  let primaryAccount = accounts.find(a => (a.name = '💲Bank of America'));
   let earliestDate = (
     await db.first(
       `SELECT * FROM v_transactions t LEFT JOIN accounts a ON t.account = a.id
@@ -465,33 +465,33 @@ async function createBudget(accounts, payees, groups) {
           month >=
           monthUtils.monthFromDate(db.fromDateRepr(earliestPrimaryDate))
         ) {
-          setBudget(month, category('Food'), 40000);
-          setBudget(month, category('Restaurants'), 30000);
-          setBudget(month, category('Entertainment'), 10000);
-          setBudget(month, category('Clothing'), 3000);
-          setBudget(month, category('General'), 50000);
-          setBudget(month, category('Gift'), 7500);
-          setBudget(month, category('Medical'), 10000);
+          setBudget(month, category('🍔Food'), 40000);
+          setBudget(month, category('🍽️Restaurants'), 30000);
+          setBudget(month, category('🍿Entertainment'), 10000);
+          setBudget(month, category('👖Clothing'), 3000);
+          setBudget(month, category('🧻General'), 50000);
+          setBudget(month, category('🎁Gift'), 7500);
+          setBudget(month, category('🩹Medical'), 10000);
 
-          setBudget(month, category('Cell'), 7500);
-          setBudget(month, category('Internet'), 6000);
-          setBudget(month, category('Mortgage'), 120000);
-          setBudget(month, category('Water'), 9000);
-          setBudget(month, category('Power'), 10000);
+          setBudget(month, category('📶Cell'), 7500);
+          setBudget(month, category('🌐Internet'), 6000);
+          setBudget(month, category('💰Mortgage'), 120000);
+          setBudget(month, category('🚰Water'), 9000);
+          setBudget(month, category('⚡Power'), 10000);
         } else {
-          setBudgetIfSpent(month, category('Food'));
-          setBudgetIfSpent(month, category('Restaurants'));
-          setBudgetIfSpent(month, category('Entertainment'));
-          setBudgetIfSpent(month, category('Clothing'));
-          setBudgetIfSpent(month, category('General'));
-          setBudgetIfSpent(month, category('Gift'));
-          setBudgetIfSpent(month, category('Medical'));
+          setBudgetIfSpent(month, category('🍔Food'));
+          setBudgetIfSpent(month, category('🍽️Restaurants'));
+          setBudgetIfSpent(month, category('🍿Entertainment'));
+          setBudgetIfSpent(month, category('👖Clothing'));
+          setBudgetIfSpent(month, category('🧻General'));
+          setBudgetIfSpent(month, category('🎁Gift'));
+          setBudgetIfSpent(month, category('🩹Medical'));
 
-          setBudgetIfSpent(month, category('Cell'));
-          setBudgetIfSpent(month, category('Internet'));
-          setBudgetIfSpent(month, category('Mortgage'));
-          setBudgetIfSpent(month, category('Water'));
-          setBudgetIfSpent(month, category('Power'));
+          setBudgetIfSpent(month, category('📶Cell'));
+          setBudgetIfSpent(month, category('🌐Internet'));
+          setBudgetIfSpent(month, category('💰Mortgage'));
+          setBudgetIfSpent(month, category('🚰Water'));
+          setBudgetIfSpent(month, category('⚡Power'));
         }
       }
     }),
@@ -513,7 +513,7 @@ async function createBudget(accounts, payees, groups) {
           let available = toBudget - prevSaved;
 
           if (available - 403000 > 0) {
-            setBudget(month, category('Savings'), available - 403000);
+            setBudget(month, category('💰Savings'), available - 403000);
             budgetActions.setBuffer(month, 403000);
 
             prevSaved += available - 403000;
@@ -541,7 +541,7 @@ async function createBudget(accounts, payees, groups) {
 
   // let sheetName = monthUtils.sheetForMonth(monthUtils.currentMonth());
   // let toBudget = sheet.getCellValue(sheetName, 'to-budget');
-  // setBudget(monthUtils.currentMonth(), category('Savings'), toBudget);
+  // setBudget(monthUtils.currentMonth(), category('💰Savings'), toBudget);
 
   await sheet.waitOnSpreadsheet();
 }
@@ -558,14 +558,14 @@ export async function createTestBudget(handlers) {
   await db.runQuery('DELETE FROM category_groups');
 
   let accounts = [
-    { name: 'Bank of America', type: 'checking' },
-    { name: 'Ally Savings', type: 'savings' },
-    { name: 'Capital One Checking', type: 'checking' },
-    { name: 'HSBC', type: 'checking' },
-    { name: 'Vanguard 401k', type: 'investment', offBudget: 1 },
-    { name: 'Mortgage', type: 'mortgage', offBudget: 1 },
-    { name: 'House Asset', type: 'other', offBudget: 1 },
-    { name: 'Roth IRA', type: 'investment', offBudget: 1 },
+    { name: '💲Bank of America', type: 'checking' },
+    { name: '💰Ally Savings', type: 'savings' },
+    { name: '💲Capital One Checking', type: 'checking' },
+    { name: '💲HSBC', type: 'checking' },
+    { name: '📈Vanguard 401k', type: 'investment', offBudget: 1 },
+    { name: '💰Mortgage', type: 'mortgage', offBudget: 1 },
+    { name: '💰House Asset', type: 'other', offBudget: 1 },
+    { name: '📈Roth IRA', type: 'investment', offBudget: 1 },
   ];
   await runMutator(() =>
     batchMessages(async () => {
@@ -602,24 +602,24 @@ export async function createTestBudget(handlers) {
     {
       name: 'Usual Expenses',
       categories: [
-        { name: 'Savings' },
-        { name: 'Medical' },
-        { name: 'Gift' },
-        { name: 'General' },
-        { name: 'Clothing' },
-        { name: 'Entertainment' },
-        { name: 'Restaurants' },
-        { name: 'Food' },
+        { name: '💰Savings' },
+        { name: '🩹Medical' },
+        { name: '🎁Gift' },
+        { name: '🧻General' },
+        { name: '👖Clothing' },
+        { name: '🍿Entertainment' },
+        { name: '🍽️Restaurants' },
+        { name: '🍔Food' },
       ],
     },
     {
       name: 'Bills',
       categories: [
-        { name: 'Power' },
-        { name: 'Water' },
-        { name: 'Mortgage' },
-        { name: 'Internet' },
-        { name: 'Cell' },
+        { name: '⚡Power' },
+        { name: '🚰Water' },
+        { name: '🏡Mortgage' },
+        { name: '🌐Internet' },
+        { name: '📶Cell' },
       ],
     },
     {
@@ -659,7 +659,7 @@ export async function createTestBudget(handlers) {
       for (let account of accounts) {
         switch (account.type) {
           case 'checking':
-            if (account.name === 'Bank of America') {
+            if (account.name === '💲Bank of America') {
               await fillPrimaryChecking(handlers, account, payees, allGroups);
             } else {
               await fillChecking(handlers, account, payees, allGroups);
@@ -675,7 +675,7 @@ export async function createTestBudget(handlers) {
             await fillMortgage(handlers, account, payees, allGroups);
             break;
           case 'other':
-            if (account.name === 'House Asset') {
+            if (account.name === '💰House Asset') {
               await fillOther(handlers, account, payees, allGroups);
             } else {
               await fillChecking(handlers, account, payees, allGroups);
@@ -693,7 +693,7 @@ export async function createTestBudget(handlers) {
   // This might happen depending on the transactions added, but we
   // don't want to show that as it'd be weird. We modify the latest
   // deposit transaction to force it to be positive
-  let primaryAccount = accounts.find(a => (a.name = 'Bank of America'));
+  let primaryAccount = accounts.find(a => (a.name = '💲Bank of America'));
   let { data: primaryBalance } = await aqlQuery(
     q('transactions')
       .filter({ account: primaryAccount.id })
