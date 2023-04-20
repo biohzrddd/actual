@@ -5,7 +5,7 @@ import { css } from 'glamor';
 
 import usePrevious from '../../hooks/usePrevious';
 import Remove from '../../icons/v2/Remove';
-import { colors } from '../../style';
+import { colorsn } from '../../style';
 import { View, Input, Tooltip, Button } from '../common';
 
 const inst = {};
@@ -390,7 +390,14 @@ function defaultRenderItems(items, getItemProps, highlightedIndex) {
             {...css({
               padding: 5,
               cursor: 'default',
-              backgroundColor: highlightedIndex === index ? colors.n4 : null,
+              backgroundColor:
+                highlightedIndex === index
+                  ? colorsn.secondary
+                  : colorsn.secondaryAccent,
+              color:
+                highlightedIndex === index
+                  ? colorsn.secondaryText
+                  : colorsn.secondaryAccentText,
             })}
           >
             {name}
@@ -541,8 +548,8 @@ function SingleAutocomplete(props) {
                 offset={2}
                 style={{
                   padding: 0,
-                  backgroundColor: colors.n1,
-                  color: 'white',
+                  backgroundColor: colorsn.secondary,
+                  color: colorsn.secondaryText,
                   ...tooltipStyle,
                 }}
                 {...tooltipProps}
@@ -568,7 +575,7 @@ function MultiItem({ name, onRemove }) {
       style={{
         alignItems: 'center',
         flexDirection: 'row',
-        backgroundColor: colors.b9,
+        backgroundColor: colorsn.background,
         padding: '2px 4px',
         margin: '2px',
         borderRadius: 4,
@@ -638,13 +645,13 @@ export function MultiAutocomplete({
               flexWrap: 'wrap',
               flexDirection: 'row',
               alignItems: 'center',
-              backgroundColor: 'white',
+              backgroundColor: colorsn.background,
               borderRadius: 4,
-              border: '1px solid #d0d0d0',
+              border: '1px solid ' + colorsn.primary,
             },
             focused && {
-              border: '1px solid ' + colors.b5,
-              boxShadow: '0 1px 1px ' + colors.b7,
+              border: '1px solid ' + colorsn.primary,
+              boxShadow: '0 1px 1px ' + colorsn.primaryAccent,
             },
           ]}
         >
@@ -698,14 +705,14 @@ export function AutocompleteFooterButton({
       style={[
         {
           fontSize: 12,
-          color: colors.n10,
-          backgroundColor: 'transparent',
-          borderColor: colors.n5,
+          backgroundColor: colorsn.secondary,
+          color: colorsn.secondaryText,
+          borderColor: colorsn.secondaryAccent,
         },
         style,
       ]}
       hoveredStyle={[
-        { backgroundColor: 'rgba(200, 200, 200, .25)' },
+        { backgroundColor: colorsn.primary, color: colorsn.primaryText },
         hoveredStyle,
       ]}
       onClick={onClick}

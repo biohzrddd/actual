@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
 import Split from '../../icons/v0/Split';
-import { colors } from '../../style';
+import { colorsn } from '../../style';
 import { View, Text, Select } from '../common';
 
 import Autocomplete, { defaultFilterSuggestion } from './Autocomplete';
@@ -53,14 +53,15 @@ export function CategoryList({
                 {...(getItemProps ? getItemProps({ item }) : null)}
                 style={{
                   backgroundColor:
-                    highlightedIndex === idx ? colors.n4 : 'transparent',
+                    highlightedIndex === idx
+                      ? colorsn.secondaryAccent
+                      : colorsn.secondary,
                   borderRadius: embedded ? 4 : 0,
                   flexShrink: 0,
                   flexDirection: 'row',
                   alignItems: 'center',
                   fontSize: 11,
                   fontWeight: 500,
-                  color: colors.g8,
                   padding: '6px 8px',
                 }}
                 data-testid="split-transaction-button"
@@ -69,7 +70,13 @@ export function CategoryList({
                   <Split
                     width={10}
                     height={10}
-                    style={{ marginRight: 5, color: 'inherit' }}
+                    style={{
+                      marginRight: 5,
+                      color:
+                        highlightedIndex === idx
+                          ? colorsn.secondaryAccentText
+                          : colorsn.secondaryText,
+                    }}
                   />
                 </Text>
                 Split Transaction
@@ -84,7 +91,8 @@ export function CategoryList({
               {showGroup && (
                 <div
                   style={{
-                    color: colors.y9,
+                    color: colorsn.secondaryText,
+                    fontWeight: 'bold',
                     padding: '4px 9px',
                   }}
                   data-testid="category-item-group"
@@ -96,7 +104,13 @@ export function CategoryList({
                 {...(getItemProps ? getItemProps({ item }) : null)}
                 style={{
                   backgroundColor:
-                    highlightedIndex === idx ? colors.n4 : 'transparent',
+                    highlightedIndex === idx
+                      ? colorsn.secondaryAccent
+                      : colorsn.secondary,
+                  color:
+                    highlightedIndex === idx
+                      ? colorsn.secondaryAccentText
+                      : colorsn.secondaryText,
                   padding: 4,
                   paddingLeft: 20,
                   borderRadius: embedded ? 4 : 0,

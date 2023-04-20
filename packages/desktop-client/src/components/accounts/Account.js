@@ -711,7 +711,12 @@ const AccountHeader = React.memo(
         <View
           style={[styles.pageContent, { paddingBottom: 10, flexShrink: 0 }]}
         >
-          <View style={{ marginTop: 2, alignItems: 'flex-start' }}>
+          <View
+            style={{
+              marginTop: 2,
+              alignItems: 'flex-start',
+            }}
+          >
             <View>
               {editingName ? (
                 <InitialFocus>
@@ -1841,9 +1846,7 @@ class AccountInternal extends React.PureComponent {
               fetchAllIds={this.fetchAllIds}
               registerDispatch={dispatch => (this.dispatchSelected = dispatch)}
             >
-              <View
-                style={[styles.page, { backgroundColor: colorsn.background }]}
-              >
+              <View style={[styles.page, { backgroundColor: colorsn.primary }]}>
                 <AccountHeader
                   tableRef={this.table}
                   editingName={editingName}

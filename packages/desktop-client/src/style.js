@@ -5,16 +5,23 @@ import tokens from './tokens';
 export const debug = { borderWidth: 1, borderColor: 'red' };
 
 export const colorsn = {
+  // tables (transaction)
+  background: '#FFFFFF',
+  backgroundText: '#131416',
+
+  // Budget, accounts
   primary: '#E8ECF0',
   primaryText: '#131416',
   primaryAccent: '#BCCCDC',
   primaryAccentText: '#131416',
 
+  // Sidebar, dropdown menus
   secondary: '#102A43',
-  secondaryText: '#D9E2EC',
+  secondaryText: '#F7FAFC',
   secondaryAccent: '#829AB1',
   secondaryAccentText: '#131416',
 
+  // erorrs, negative balances
   error: '#FFE3E3',
   errorText: '#EF4E4E',
   errorAccent: '#CF1124',
@@ -23,12 +30,10 @@ export const colorsn = {
   warningText: '#E6BB20',
   warningAccent: '#B88115',
 
-  notice: '#C6F7E2',
+  // update notice, positive balances
+  notice: '#EFFCF6',
   noticeText: '#0C6B58',
   noticeAccent: '#014D40',
-  noticeAccentText: '#FAFFFD',
-
-  background: '#FFFFFF',
 };
 
 export const colors = {

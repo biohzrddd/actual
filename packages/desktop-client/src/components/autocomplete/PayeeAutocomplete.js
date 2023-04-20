@@ -125,7 +125,8 @@ export function PayeeList({
                 <div
                   key={'title-' + idx}
                   style={{
-                    color: colorsn.notice,
+                    color: colorsn.secondaryText,
+                    fontWeight: 'bold',
                     padding: '4px 9px',
                   }}
                 >
@@ -139,8 +140,12 @@ export function PayeeList({
                 style={{
                   backgroundColor:
                     highlightedIndex === idx + offset
-                      ? colorsn.primaryAccent
-                      : 'transparent',
+                      ? colorsn.secondaryAccent
+                      : colorsn.secondary,
+                  color:
+                    highlightedIndex === idx + offset
+                      ? colorsn.secondaryAccentText
+                      : colorsn.secondaryText,
                   borderRadius: embedded ? 4 : 0,
                   padding: 4,
                   paddingLeft: 20,

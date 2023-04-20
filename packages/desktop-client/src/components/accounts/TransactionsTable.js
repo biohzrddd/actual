@@ -240,7 +240,7 @@ export const TransactionHeader = React.memo(
         borderColor={colorsn.primaryAccent}
         backgroundColor={colorsn.background}
         style={{
-          color: colorsn.primaryText,
+          color: colorsn.backgroundText,
           fontWeight: 300,
           zIndex: 200,
         }}
@@ -317,14 +317,14 @@ function StatusCell({
   let props = {
     color:
       status === 'cleared'
-        ? colorsn.notice
+        ? colorsn.noticeText
         : status === 'missed'
-        ? colorsn.error
+        ? colorsn.errorText
         : status === 'due'
-        ? colorsn.warning
+        ? colorsn.warningText
         : selected
         ? colorsn.secondaryAccent
-        : colorsn.secondary,
+        : colorsn.backgroundText,
   };
 
   function onSelect() {
@@ -400,7 +400,7 @@ function PayeeCell({
       width="flex"
       name="payee"
       value={payeeId}
-      valueStyle={[valueStyle, inherited && { color: colorsn.primary }]}
+      valueStyle={[valueStyle, inherited && { color: colorsn.backgroundText }]}
       formatter={() => getPayeePretty(transaction, payee, transferAcct)}
       exposed={focused}
       onExpose={!isPreview && (name => onEdit(id, name))}
@@ -631,7 +631,7 @@ export const Transaction = React.memo(function Transaction(props) {
       highlighted={highlighted}
       style={[
         style,
-        isPreview && { color: colorsn.secondaryAccent, fontStyle: 'italic' },
+        isPreview && { color: colorsn.backgroundText, fontStyle: 'italic' },
         _unmatched && { opacity: 0.5 },
       ]}
       onMouseEnter={() => onHover && onHover(transaction.id)}

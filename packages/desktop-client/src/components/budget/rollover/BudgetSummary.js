@@ -314,7 +314,7 @@ export function BudgetSummary({ month, isGoalTemplatesEnabled }) {
                 width={13}
                 height={13}
                 // The margin is to make it the exact same size as the dots button
-                style={{ color: colorsn.primaryText, margin: 1 }}
+                style={{ color: colorsn.backgroundText, margin: 1 }}
               />
             </Button>
           </View>
@@ -349,7 +349,7 @@ export function BudgetSummary({ month, isGoalTemplatesEnabled }) {
                 width={15}
                 height={15}
                 tooltipPosition="bottom-right"
-                defaultColor={colorsn.primaryText}
+                defaultColor={colorsn.backgroundText}
               />
             </View>
             <View style={{ userSelect: 'none', marginLeft: 2 }}>
@@ -357,7 +357,7 @@ export function BudgetSummary({ month, isGoalTemplatesEnabled }) {
                 <DotsHorizontalTriple
                   width={15}
                   height={15}
-                  style={{ color: colorsn.primaryText }}
+                  style={{ color: colorsn.backgroundText }}
                 />
               </Button>
               {menuOpen && (
