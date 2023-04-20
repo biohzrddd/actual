@@ -10,14 +10,11 @@ import { send, sendCatch } from 'loot-core/src/platform/client/fetch';
 import * as monthUtils from 'loot-core/src/shared/months';
 import { extractScheduleConds } from 'loot-core/src/shared/schedules';
 
-import useFeatureFlag from '../../hooks/useFeatureFlag';
 import useSelected, { SelectedProvider } from '../../hooks/useSelected';
 import { colors } from '../../style';
 import SimpleTransactionsTable from '../accounts/SimpleTransactionsTable';
-import LegacyAccountAutocomplete from '../autocomplete/AccountAutocomplete';
-import NewAccountAutocomplete from '../autocomplete/NewAccountAutocomplete';
-import NewPayeeAutocomplete from '../autocomplete/NewPayeeAutocomplete';
-import LegacyPayeeAutocomplete from '../autocomplete/PayeeAutocomplete';
+import AccountAutocomplete from '../autocomplete/AccountAutocomplete';
+import PayeeAutocomplete from '../autocomplete/PayeeAutocomplete';
 import { Stack, View, Text, Button } from '../common';
 import { FormField, FormLabel, Checkbox } from '../forms';
 import { OpSelect } from '../modals/EditRule';
@@ -82,8 +79,6 @@ function updateScheduleConditions(schedule, fields) {
 }
 
 export default function ScheduleDetails() {
-  const isNewAutocompleteEnabled = useFeatureFlag('newAutocomplete');
-
   let { id, initialFields } = useParams();
   let adding = id == null;
   const accounts = useCachedAccounts();
@@ -437,13 +432,6 @@ export default function ScheduleDetails() {
   // This is derived from the date
   let repeats = state.fields.date ? !!state.fields.date.frequency : false;
 
-  const PayeeAutocomplete = isNewAutocompleteEnabled
-    ? NewPayeeAutocomplete
-    : LegacyPayeeAutocomplete;
-  const AccountAutocomplete = isNewAutocompleteEnabled
-    ? NewAccountAutocomplete
-    : LegacyAccountAutocomplete;
-
   return (
     <Page
       title={payee ? `Schedule: ${payee.name}` : 'Schedule'}
@@ -470,7 +458,6 @@ export default function ScheduleDetails() {
             payees={payees}
             accounts={accounts}
             value={state.fields.payee}
-            inputId="payee-field"
             inputProps={{ id: 'payee-field', placeholder: '(none)' }}
             onSelect={id =>
               dispatch({ type: 'set-field', field: 'payee', value: id })
@@ -484,7 +471,6 @@ export default function ScheduleDetails() {
           <AccountAutocomplete
             includeClosedAccounts={false}
             value={state.fields.account}
-            inputId="account-field"
             inputProps={{ id: 'account-field', placeholder: '(none)' }}
             onSelect={id =>
               dispatch({ type: 'set-field', field: 'account', value: id })
