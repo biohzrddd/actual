@@ -6,7 +6,7 @@ import { createPayee } from 'loot-core/src/client/actions/queries';
 import { getActivePayees } from 'loot-core/src/client/reducers/queries';
 
 import Add from '../../icons/v1/Add';
-import { colors } from '../../style';
+import { colorsn } from '../../style';
 import { View } from '../common';
 
 import { AutocompleteFooter, AutocompleteFooterButton } from './Autocomplete';
@@ -104,7 +104,7 @@ export default function PayeeAutocomplete({
         <View
           style={{
             display: 'block',
-            color: colors.g8,
+            color: colorsn.notice,
             fontSize: 11,
             fontWeight: 500,
             marginLeft: -10,
@@ -115,7 +115,7 @@ export default function PayeeAutocomplete({
             width={8}
             height={8}
             style={{
-              color: colors.g8,
+              color: colorsn.notice,
               marginRight: 5,
               display: 'inline-block',
             }}
@@ -135,15 +135,15 @@ export default function PayeeAutocomplete({
               style={[
                 showManagePayees && { marginBottom: 5 },
                 focusTransferPayees && {
-                  backgroundColor: colors.y8,
-                  color: colors.g2,
-                  borderColor: colors.y8,
+                  backgroundColor: colorsn.notice,
+                  color: colorsn.notice,
+                  borderColor: colorsn.notice,
                 },
               ]}
               hoveredStyle={
                 focusTransferPayees && {
-                  backgroundColor: colors.y8,
-                  colors: colors.y2,
+                  backgroundColor: colorsn.notice,
+                  color: colorsn.notice,
                 }
               }
               onClick={() => {

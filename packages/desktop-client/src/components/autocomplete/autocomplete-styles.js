@@ -1,11 +1,11 @@
-import { styles as actualStyles, colors } from '../../style';
+import { styles as actualStyles, colorsn } from '../../style';
 
 const colourStyles = {
   ...actualStyles.lightScrollbar,
   control: styles => ({
     ...styles,
-    backgroundColor: 'white',
-    border: '1px solid rgb(208, 208, 208)',
+    backgroundColor: colorsn.background,
+    border: '1px solid ' + colorsn.primaryAccent,
     borderRadius: 4,
     outline: 0,
     marginLeft: -1,
@@ -28,7 +28,7 @@ const colourStyles = {
   menu: (styles, { selectProps }) => ({
     ...styles,
     minWidth: 200,
-    backgroundColor: colors.n1,
+    backgroundColor: colorsn.secondary,
     marginTop: 2,
     marginBottom: 2,
     position: selectProps['data-embedded'] ? 'relative' : styles.position,
@@ -53,16 +53,16 @@ const colourStyles = {
   }),
   groupHeading: styles => ({
     ...styles,
-    color: colors.y9,
+    color: colorsn.secondaryText,
     textTransform: 'none',
     paddingLeft: '9px',
     fontSize: '100%',
-    fontWeight: 'normal',
+    fontWeight: 'bold',
   }),
   option: (styles, { isFocused }) => ({
     ...styles,
-    backgroundColor: isFocused ? colors.n5 : undefined,
-    color: 'white',
+    backgroundColor: isFocused ? colorsn.secondaryAccent : colorsn.secondary,
+    color: isFocused ? colorsn.secondaryAccentText : colorsn.secondaryText,
     padding: '3px 20px',
     fontSize: 13,
   }),
@@ -80,7 +80,7 @@ const colourStyles = {
   }),
   multiValue: styles => ({
     ...styles,
-    backgroundColor: colors.b9,
+    backgroundColor: colorsn.secondaryAccent,
   }),
 };
 
