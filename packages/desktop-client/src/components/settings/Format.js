@@ -2,6 +2,7 @@ import React from 'react';
 
 import { numberFormats } from 'loot-core/src/shared/util';
 
+import { colorThemes, setNewThemeColor } from '../../style';
 import tokens from '../../tokens';
 import { Button, CustomSelect, Text, View } from '../common';
 import { useSidebar } from '../FloatableSidebar';
@@ -28,6 +29,11 @@ let dateFormats = [
   { value: 'MM.dd.yyyy', label: 'MM.DD.YYYY' },
   { value: 'dd.MM.yyyy', label: 'DD.MM.YYYY' },
 ];
+
+let themeList = colorThemes.map((t, index) => ({
+  value: index.toString(),
+  label: t.name,
+}));
 
 function Column({ title, children }) {
   return (
@@ -63,10 +69,16 @@ export default function FormatSettings({ prefs, savePrefs }) {
     savePrefs({ hideFraction });
   }
 
+  function onChangeTheme(e) {
+    savePrefs({ currentTheme: e });
+    setNewThemeColor(themeList[e].label);
+  }
+
   let sidebar = useSidebar();
   let firstDayOfWeekIdx = prefs.firstDayOfWeekIdx || '0'; // Sunday
   let dateFormat = prefs.dateFormat || 'MM/dd/yyyy';
   let numberFormat = prefs.numberFormat || 'comma-dot';
+  let currentTheme = prefs.currentTheme || 'actual-light';
 
   return (
     <Setting
@@ -126,6 +138,17 @@ export default function FormatSettings({ prefs, savePrefs }) {
                 value={firstDayOfWeekIdx}
                 onChange={onFirstDayOfWeek}
                 options={daysOfWeek.map(f => [f.value, f.label])}
+                style={{ padding: '5px 10px', fontSize: 15 }}
+              />
+            </Button>
+          </Column>
+
+          <Column title="Theme">
+            <Button bounce={false} style={{ padding: 0 }}>
+              <CustomSelect
+                value={currentTheme}
+                onChange={onChangeTheme}
+                options={themeList.map(f => [f.value, f.label])}
                 style={{ padding: '5px 10px', fontSize: 15 }}
               />
             </Button>

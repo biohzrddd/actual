@@ -267,12 +267,24 @@ const colorsLight = {
   formInputTextHighlight: colorPallet.purple600,
 };
 
-const colorThemes = [
+export const colorThemes = [
   { name: 'actual-dark', colors: colorsDark, type: 'dark' },
   { name: 'actual-light', colors: colorsLight, type: 'light' },
 ];
 
-export const colorsm = colorThemes[0].colors;
+//Need to import prefs into this file.  Not sure how.
+//I believe we need a connect function to import the prefs, but I was unable
+//to configure it correctly.
+
+export let colorsm = colorThemes[1].colors; //This should change once prefs are imported
+//export let colorsm = colorThemes.filter(t => t.name === prefs.currentTheme)[0]
+//  .colors;
+
+export function setNewThemeColor(newTheme) {
+  colorsm = colorThemes.filter(t => t.name === newTheme)[0].colors;
+  //force refresh of browser???
+  //location.reload();
+}
 
 const _colors = {
   y1: '#733309',
